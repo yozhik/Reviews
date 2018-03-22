@@ -6,6 +6,22 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <!--for customizing pressed background of toolbar menu items-->
+    <style name="ToolbarMenuItemsBackGroundTheme">
+        <item name="colorControlHighlight">#329e9e9e</item>
+    </style>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <!--на обычных экранах в андроиде <5 ничего не добавляем-->
+    <style name="AppTheme.ContentBelowStatusBarTheme" parent="AppTheme" >
+        <item name="android:windowDisablePreview">true</item>
     </style>
 
 </resources>
