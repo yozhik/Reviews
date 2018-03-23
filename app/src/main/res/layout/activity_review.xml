@@ -73,7 +73,7 @@
             android:layout_height="48dp"
             android:background="@color/white"
             android:visibility="visible"
-            app:tabBackground="@color/blue"
+            app:tabBackground="@color/white"
             app:tabGravity="center"
             app:tabIndicatorColor="@color/colorPrimaryDark"
             app:tabIndicatorHeight="2dp"
