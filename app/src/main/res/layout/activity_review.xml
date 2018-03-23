@@ -67,13 +67,27 @@
         android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <RelativeLayout
-            android:id="@+id/tab_bar_layout"
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tab_layout"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:background="@color/colorAccent"></RelativeLayout>
+            android:background="@color/white"
+            android:visibility="visible"
+            app:tabBackground="@color/blue"
+            app:tabGravity="center"
+            app:tabIndicatorColor="@color/colorPrimaryDark"
+            app:tabIndicatorHeight="2dp"
+            app:tabMinWidth="500dp"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="@color/colorPrimaryDark"
+            app:tabTextColor="@color/black" />
 
-        <include layout="@layout/scrollable_content" />
+        <android.support.v4.view.ViewPager
+            android:id="@+id/view_pager_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <!--<include layout="@layout/scrollable_content" />-->
 
     </LinearLayout>
 
