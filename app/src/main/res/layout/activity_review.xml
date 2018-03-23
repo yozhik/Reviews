@@ -22,14 +22,16 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <RelativeLayout
-                android:id="@+id/partner_ads_pager_container"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:id="@+id/app_bar_collapsing_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="?attr/actionBarSize"
-                android:background="@color/black"
-                android:foreground="?android:windowContentOverlay"
-                android:visibility="visible"
-                app:layout_collapseMode="none"></RelativeLayout>
+                app:layout_collapseMode="none">
+
+                <!-- Some custom view controls will be placed here to be collapsed while scrolling -->
+                <include layout="@layout/app_bar_collapsing_content" />
+
+            </RelativeLayout>
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar_layout"
@@ -45,6 +47,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                     <!-- Some custom toolbar controls will be placed here -->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Toolbar" />
                 </RelativeLayout>
 
             </android.support.v7.widget.Toolbar>
@@ -61,12 +68,12 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <RelativeLayout
-            android:id="@+id/a1"
+            android:id="@+id/tab_bar_layout"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="48dp"
             android:background="@color/colorAccent"></RelativeLayout>
 
-        <include layout="@layout/scrollable_content"/>
+        <include layout="@layout/scrollable_content" />
 
     </LinearLayout>
 
