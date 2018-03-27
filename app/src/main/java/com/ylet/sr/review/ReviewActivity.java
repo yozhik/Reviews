@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -45,8 +44,7 @@ public class ReviewActivity extends AppCompatActivity {
         viewPager.setPagingEnabled(true); //TODO: this method of my own class is used currently in test mode
     }
 
-    private void disableTab(int tabNumber)
-    {
+    private void disableTab(int tabNumber) {
         ViewGroup vg = (ViewGroup) tabLayout.getChildAt(0);
         ViewGroup vgTab = (ViewGroup) vg.getChildAt(tabNumber);
         vgTab.setEnabled(false);

@@ -23,8 +23,9 @@ public class MenuFragment2 extends Fragment
     private ScreenSwitcher screenSwitcher;
     private Random random;
 
+    private static int counter = 0;
 
-    private static String screenNames[] = {"comments_scrollable_layout", "comments_disabled_layout", "network_error_layout"};
+    private static String screenNames[] = {"network_error_layout", "comments_scrollable_layout", "comments_disabled_layout"};
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -55,13 +56,12 @@ public class MenuFragment2 extends Fragment
         return v;
     }
 
-    private void loadData()
-    {
+    private void loadData() {
         swipe_refresh_layout.setRefreshing(true);
         swipe_refresh_layout.postDelayed(new Runnable() {
             @Override
             public void run() {
-                int x = random.nextInt(screenNames.length);
+                int x = getCounter();
                 String screenName = screenNames[x];
                 screenSwitcher.showScreen(screenName);
                 swipe_refresh_layout.setRefreshing(false);
@@ -76,12 +76,22 @@ public class MenuFragment2 extends Fragment
         swipe_refresh_layout.postDelayed(new Runnable() {
             @Override
             public void run() {
-                int x = random.nextInt(screenNames.length);
+                int x = getCounter();
                 String screenName = screenNames[x];
                 screenSwitcher.showScreen(screenName);
                 swipe_refresh_layout.setRefreshing(false);
             }
         }, 1500);
 
+    }
+
+    private int getCounter() {
+        //random.nextInt(screenNames.length);
+        counter++;
+        if (counter >= screenNames.length) {
+            counter = 0;
+        }
+
+        return counter;
     }
 }
