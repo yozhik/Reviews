@@ -34,7 +34,7 @@ public class ReviewActivity extends AppCompatActivity {
         setupViewPager(viewPager);
         tabLayout.setupWithViewPager(viewPager);
 
-        disableTab(1);
+        //disableTab(1);
     }
 
     private void setupViewPager(MyViewPager viewPager) {
