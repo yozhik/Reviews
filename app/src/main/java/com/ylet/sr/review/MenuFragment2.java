@@ -49,9 +49,9 @@ public class MenuFragment2 extends Fragment
         screenSwitcher.addScreen("comments_disabled_layout", comments_disabled_layout);
         screenSwitcher.addScreen("network_error_layout", network_error_layout);
 
-        screenSwitcher.showScreen("initial_layout");
+        screenSwitcher.showScreen("comments_scrollable_layout");
 
-        loadData();
+        //loadData();
 
         return v;
     }

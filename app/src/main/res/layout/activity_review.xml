@@ -61,10 +61,11 @@
     </android.support.design.widget.AppBarLayout>
 
     <LinearLayout
-        android:id="@+id/content_layout"
+        android:id="@+id/content_layout_dual_tabs"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:visibility="gone"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <android.support.design.widget.TabLayout
@@ -82,12 +83,35 @@
             app:tabSelectedTextColor="@color/colorPrimaryDark"
             app:tabTextColor="@color/black" />
 
-        <com.ylet.sr.review.MyViewPager
+        <android.support.v4.view.ViewPager
             android:id="@+id/view_pager_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-        <!--<include layout="@layout/menu_fragment_2" />-->
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/content_layout_single_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <include layout="@layout/description_layout" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/content_layout_initial_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <include layout="@layout/preloader_layout" />
 
     </LinearLayout>
 
