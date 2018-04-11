@@ -44,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+        expandableLayout.setVisibility(View.GONE);
+
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,8 +59,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(false);
             }
         });
-
-        expandableLayout.setVisibility(View.GONE);
 
         expandReviewLayoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,21 +92,19 @@ public class MainActivity extends AppCompatActivity {
     private void collapse() {
         int finalHeight = expandableLayout.getHeight();
 
+        expandableLayout.setVisibility(View.VISIBLE);
         ValueAnimator animator = slideAnimator(finalHeight, 0, expandableLayout);
-        ValueAnimator expandSendBtnAnimator = slideAnimator(0, expandReviewLayoutBtnHeight, expandReviewLayoutBtn);
 
         animator.addListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
-                expandReviewLayoutBtn.setVisibility(View.VISIBLE);
+
             }
 
             @Override
             public void onAnimationEnd(Animator animator) {
-                //Height=0, but it set visibility to GONE
-                //expandReviewLayoutBtn.setVisibility(View.VISIBLE);
-                //expandReviewLayoutBtn.setVisibility(View.VISIBLE);
                 expandableLayout.setVisibility(View.GONE);
+                expandReviewLayoutBtn.setVisibility(View.VISIBLE);
             }
 
             @Override
@@ -121,21 +119,17 @@ public class MainActivity extends AppCompatActivity {
         });
 
         animator.start();
-        expandSendBtnAnimator.start();
     }
 
     private void expand() {
-        //set Visible
+        expandReviewLayoutBtn.setVisibility(View.INVISIBLE);
         expandableLayout.setVisibility(View.VISIBLE);
 
         final int widthSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
         final int heightSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
         expandableLayout.measure(widthSpec, heightSpec);
 
-        expandReviewLayoutBtnHeight = expandReviewLayoutBtn.getMeasuredHeight();
-
         ValueAnimator animator = slideAnimator(0, expandableLayout.getMeasuredHeight(), expandableLayout);
-        ValueAnimator collapseSendBtnAnimator = slideAnimator(expandReviewLayoutBtnHeight, 0, expandReviewLayoutBtn);
 
         animator.addListener(new Animator.AnimatorListener() {
             @Override
@@ -145,8 +139,6 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animator animator) {
-                //Height=0, but it set visibility to GONE
-                expandReviewLayoutBtn.setVisibility(View.GONE);
                 expandableLayout.setVisibility(View.VISIBLE);
             }
 
@@ -162,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         animator.start();
-        collapseSendBtnAnimator.start();
+
     }
 
     private ValueAnimator slideAnimator(int start, int end, final View animationView) {

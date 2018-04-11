@@ -11,7 +11,7 @@
 
     <item android:state_pressed="true">
         <shape>
-            <solid android:color="#0077d5" />
+            <solid android:color="#ffffff" />
             <corners android:radius="2dp" />
         </shape>
     </item>
