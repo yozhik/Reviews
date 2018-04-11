@@ -10,15 +10,15 @@
     <Button
         android:id="@+id/btn1"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_marginBottom="20dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="1dp"
         android:text="Start Single View" />
 
     <Button
         android:id="@+id/btn2"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_marginBottom="10dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="1dp"
         android:text="Start Tab View" />
 
 
@@ -32,8 +32,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_marginBottom="10dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="1dp"
+            android:layout_marginEnd="1dp"
             android:background="@color/blue"
             android:clickable="true"
             app:cardBackgroundColor="@color/blue"
