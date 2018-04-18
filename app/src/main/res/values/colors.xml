@@ -12,4 +12,7 @@
     <color name="yellow">#f7f731</color>
     <color name="black">#000000</color>
 
+    <color name="re_yellow_light">#a4ffd000</color>
+    <color name="transparent">#00FFFFFF</color>
+
 </resources>
