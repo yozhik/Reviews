@@ -49,6 +49,7 @@ public class ReviewActivity extends AppCompatActivity {
 
         content_layout_single_view.setVisibility(View.GONE);
         content_layout_dual_tabs.setVisibility(View.GONE);
+        tabLayout.setVisibility(View.GONE);
         content_layout_initial_view.setVisibility(View.VISIBLE);
 
         parseIntent(getIntent());
@@ -59,11 +60,13 @@ public class ReviewActivity extends AppCompatActivity {
     private void initSingleView() {
         content_layout_single_view.setVisibility(View.VISIBLE);
         content_layout_dual_tabs.setVisibility(View.GONE);
+        tabLayout.setVisibility(View.GONE);
         content_layout_initial_view.setVisibility(View.GONE);
     }
 
     private void initTabView() {
         content_layout_dual_tabs.setVisibility(View.VISIBLE);
+        tabLayout.setVisibility(View.VISIBLE);
         content_layout_initial_view.setVisibility(View.GONE);
         content_layout_single_view.setVisibility(View.GONE);
 
@@ -96,7 +99,7 @@ public class ReviewActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    Thread.sleep(5000);
+                    Thread.sleep(2000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
