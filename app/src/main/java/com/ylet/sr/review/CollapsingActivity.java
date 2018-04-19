@@ -90,7 +90,7 @@ public class CollapsingActivity extends AppCompatActivity implements ChangeNetwo
                     public void run() {
                         Toast.makeText(CollapsingActivity.this, "Data loaded.", Toast.LENGTH_SHORT).show();
 
-                        boolean showOneView = true;
+                        boolean showOneView = false;
                         if (showOneView) {
                             initSingleView();
                         } else {
@@ -111,7 +111,18 @@ public class CollapsingActivity extends AppCompatActivity implements ChangeNetwo
     }
 
     private void initTabView() {
+        tabLayout.setVisibility(View.VISIBLE);
+        viewPager.setVisibility(View.VISIBLE);
 
+        setupViewPager(viewPager);
+        tabLayout.setupWithViewPager(viewPager);
+    }
+
+    private void setupViewPager(ViewPager viewPager) {
+        TabMenuAdapter adapter = new TabMenuAdapter(getSupportFragmentManager());
+        adapter.addFragment(new MenuFragment1(), "Menu 1");
+        adapter.addFragment(new MenuFragment3(), "Menu 2");
+        viewPager.setAdapter(adapter);
     }
 
     @Override
