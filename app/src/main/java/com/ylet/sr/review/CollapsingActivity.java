@@ -43,6 +43,12 @@ public class CollapsingActivity extends AppCompatActivity implements ChangeNetwo
     protected FragmentManager fragmentManager;
     private boolean dataLoading = false;
 
+    private MenuFragment1 menu1Fragment1;
+    private MenuFragment3 menu1Fragment3;
+    private TabMenuAdapter adapter;
+
+    private boolean isCreated = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,7 +100,11 @@ public class CollapsingActivity extends AppCompatActivity implements ChangeNetwo
                         if (showOneView) {
                             initSingleView();
                         } else {
-                            initTabView();
+                            if (!isCreated) {
+                                initTabView();
+                            } else {
+                                menu1Fragment1.data = "new Data setted after reconnect";
+                            }
                         }
                         dataLoading = false;
                     }
@@ -111,17 +121,23 @@ public class CollapsingActivity extends AppCompatActivity implements ChangeNetwo
     }
 
     private void initTabView() {
-        tabLayout.setVisibility(View.VISIBLE);
-        viewPager.setVisibility(View.VISIBLE);
+        if (!isCreated) {
+            tabLayout.setVisibility(View.VISIBLE);
+            viewPager.setVisibility(View.VISIBLE);
 
-        setupViewPager(viewPager);
-        tabLayout.setupWithViewPager(viewPager);
+            setupViewPager(viewPager);
+            tabLayout.setupWithViewPager(viewPager);
+            isCreated = true;
+        }
     }
 
     private void setupViewPager(ViewPager viewPager) {
-        TabMenuAdapter adapter = new TabMenuAdapter(getSupportFragmentManager());
-        adapter.addFragment(new MenuFragment1(), "Menu 1");
-        adapter.addFragment(new MenuFragment3(), "Menu 2");
+        menu1Fragment1 = new MenuFragment1();
+        menu1Fragment3 = new MenuFragment3();
+
+        adapter = new TabMenuAdapter(getSupportFragmentManager());
+        adapter.addFragment(menu1Fragment1, "Menu 1");
+        adapter.addFragment(menu1Fragment3, "Menu 2");
         viewPager.setAdapter(adapter);
     }
 

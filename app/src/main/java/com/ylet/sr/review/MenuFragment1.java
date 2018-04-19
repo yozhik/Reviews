@@ -11,6 +11,9 @@ import android.view.ViewGroup;
  */
 
 public class MenuFragment1 extends Fragment {
+
+    public String data;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.menu_fragment_1, container, false);
