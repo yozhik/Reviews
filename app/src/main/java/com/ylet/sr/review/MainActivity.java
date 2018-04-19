@@ -23,6 +23,9 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.btn2)
     Button btn2;
 
+    @BindView(R.id.btn3)
+    Button btn3;
+
     @BindView(R.id.expand_review_layout_btn)
     CardView expandReviewLayoutBtn;
 
@@ -57,6 +60,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(false);
+            }
+        });
+
+        btn3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startCollapsingActivity();
             }
         });
 
@@ -176,6 +186,12 @@ public class MainActivity extends AppCompatActivity {
     private void startActivity(boolean showOneView) {
         Intent shopFinalIntent = new Intent(this, ReviewActivity.class);
         shopFinalIntent.putExtra("showOneView", showOneView);
+        startActivity(shopFinalIntent);
+
+    }
+
+    private void startCollapsingActivity() {
+        Intent shopFinalIntent = new Intent(this, CollapsingActivity.class);
         startActivity(shopFinalIntent);
 
     }
