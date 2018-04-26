@@ -44,7 +44,7 @@ public class CollapsingActivity extends AppCompatActivity implements ChangeNetwo
     private boolean dataLoading = false;
 
     private MenuFragment1 menu1Fragment1;
-    private MenuFragment3 menu1Fragment3;
+    private MenuFragment2 menu1Fragment2;
     private TabMenuAdapter adapter;
 
     private boolean isCreated = false;
@@ -133,11 +133,11 @@ public class CollapsingActivity extends AppCompatActivity implements ChangeNetwo
 
     private void setupViewPager(ViewPager viewPager) {
         menu1Fragment1 = new MenuFragment1();
-        menu1Fragment3 = new MenuFragment3();
+        menu1Fragment2 = new MenuFragment2();
 
         adapter = new TabMenuAdapter(getSupportFragmentManager());
         adapter.addFragment(menu1Fragment1, "Menu 1");
-        adapter.addFragment(menu1Fragment3, "Menu 2");
+        adapter.addFragment(menu1Fragment2, "Menu 2");
         viewPager.setAdapter(adapter);
     }
 
