@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 public class MenuFragment2 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.comments_scrollable_layout, container, false);
+        View v = inflater.inflate(R.layout.menu_fragment_2, container, false);
         return v;
     }
 }

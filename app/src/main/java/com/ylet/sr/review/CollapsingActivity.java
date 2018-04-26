@@ -23,10 +23,10 @@ public class CollapsingActivity extends AppCompatActivity implements ChangeNetwo
     @BindView(R.id.shop_final_root_layout)
     CoordinatorLayout shop_final_root_layout;
 
-    @BindView(R.id.shop_final_app_bar_layout)
+    @BindView(R.id.app_bar_layout)
     AppBarLayout shop_final_app_bar_layout;
 
-    @BindView(R.id.shop_final_collapsing_toolbar_layout)
+    @BindView(R.id.collapsing_toolbar_layout)
     CollapsingToolbarLayout shop_final_collapsing_toolbar_layout;
 
     @BindView(R.id.view_pager_layout)
@@ -117,7 +117,7 @@ public class CollapsingActivity extends AppCompatActivity implements ChangeNetwo
     private void initSingleView() {
         tabLayout.setVisibility(View.GONE);
         viewPager.setVisibility(View.GONE);
-        showFragmentWithoutBackStack(R.id.shop_final_content_holder, new MenuFragment1());
+        showFragmentWithoutBackStack(R.id.fragment_content_holder, new MenuFragment1());
     }
 
     private void initTabView() {

@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/shop_final_root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <android.support.design.widget.AppBarLayout
-        android:id="@+id/shop_final_app_bar_layout"
+        android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:animateLayoutChanges="false"
@@ -16,7 +15,7 @@
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/shop_final_collapsing_toolbar_layout"
+            android:id="@+id/collapsing_toolbar_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/green"
@@ -25,7 +24,7 @@
             app:titleEnabled="false">
 
             <include
-                layout="@layout/shop_final_collapsing_part"
+                layout="@layout/appbar_collapsing_part"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="?attr/actionBarSize"
@@ -47,11 +46,11 @@
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:id="@+id/shop_final_title_txt"
+                        android:id="@+id/title_txt"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_alignParentStart="true"
-                        android:layout_toStartOf="@+id/shop_final_float_favorite_img"
+                        android:layout_toStartOf="@+id/star_img"
                         android:ellipsize="end"
                         android:fontFamily="sans-serif-medium"
                         android:gravity="center_vertical"
@@ -60,7 +59,7 @@
                         android:textSize="19sp" />
 
                     <ImageView
-                        android:id="@+id/shop_final_float_favorite_img"
+                        android:id="@+id/star_img"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
@@ -98,7 +97,7 @@
 
 
     <FrameLayout
-        android:id="@+id/shop_final_content_holder"
+        android:id="@+id/fragment_content_holder"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/blue"
@@ -113,7 +112,7 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/shop_final_nested_scroll_view"
+        android:id="@+id/nested_scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/black"
