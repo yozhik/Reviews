@@ -9,8 +9,12 @@ import android.net.NetworkInfo;
 public class NetworkStateReceiver extends BroadcastReceiver {
     public ChangeNetworkNotification changeNetworkNotification;
 
-    public NetworkStateReceiver(ChangeNetworkNotification changeNetworkNotification) {
+    public NetworkStateReceiver() {
         super();
+    }
+
+    public void setNetworkReceiver(ChangeNetworkNotification changeNetworkNotification)
+    {
         this.changeNetworkNotification = changeNetworkNotification;
     }
 

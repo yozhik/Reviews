@@ -63,7 +63,8 @@ public class CollapsingActivity extends AppCompatActivity implements ChangeNetwo
 
         fragmentManager = getSupportFragmentManager();
 
-        networkStateReceiver = new NetworkStateReceiver(this);
+        networkStateReceiver = new NetworkStateReceiver();
+        networkStateReceiver.setNetworkReceiver(this);
 
         IntentFilter intentFilterForNetwork = new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE");
         registerReceiver(networkStateReceiver, intentFilterForNetwork);
