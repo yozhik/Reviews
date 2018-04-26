@@ -1,3 +1,5 @@
+Link to the issue: https://www.youtube.com/watch?v=n32N9Z4S3SA&feature=youtu.be  (Collapsing AppBarLayout not scolling).
+
 CollapsingActivity - activity with Collapsing AppBarLayout. Which loads one or two fragments into "fragment_content_holder" and it has TabLayout 
 to switch between fragments in view pager.
 
