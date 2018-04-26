@@ -12,6 +12,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -57,6 +58,7 @@ public class CollapsingActivity extends AppCompatActivity implements ChangeNetwo
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d("TEST", "CollapsingActivity.onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collapsing);
         ButterKnife.bind(this);
@@ -75,12 +77,14 @@ public class CollapsingActivity extends AppCompatActivity implements ChangeNetwo
 
     @Override
     protected void onStart() {
+        Log.d("TEST", "CollapsingActivity.onStart");
         super.onStart();
         IntentFilter intentFilterForNetwork = new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE");
         registerReceiver(networkStateReceiver, intentFilterForNetwork);
     }
 
     private void initToolbar() {
+        Log.d("TEST", "CollapsingActivity.initToolbar");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_layout);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -88,6 +92,7 @@ public class CollapsingActivity extends AppCompatActivity implements ChangeNetwo
     }
 
     private void loadData() {
+        Log.d("TEST", "CollapsingActivity.loadData");
         dataLoading = true;
         Thread t = new Thread(new Runnable() {
             @Override
@@ -102,7 +107,7 @@ public class CollapsingActivity extends AppCompatActivity implements ChangeNetwo
                     @Override
                     public void run() {
                         Toast.makeText(CollapsingActivity.this, "Data loaded.", Toast.LENGTH_SHORT).show();
-
+                        Log.d("TEST", "CollapsingActivity.Data loaded.");
                         dataReloadIteration++;
                         dummyDataFromServer = getDummyObjectFromServer();
 
@@ -134,6 +139,7 @@ public class CollapsingActivity extends AppCompatActivity implements ChangeNetwo
     }
 
     private void initSingleView() {
+        Log.d("TEST", "CollapsingActivity.initSingleView");
         tabLayout.setVisibility(View.GONE);
         viewPager.setVisibility(View.GONE);
         showFragmentWithoutBackStack(R.id.fragment_content_holder, new MenuFragment1());
@@ -141,6 +147,7 @@ public class CollapsingActivity extends AppCompatActivity implements ChangeNetwo
 
     private void initTabView() {
         if (!isCreated) {
+            Log.d("TEST", "CollapsingActivity.initTabView");
             tabLayout.setVisibility(View.VISIBLE);
             viewPager.setVisibility(View.VISIBLE);
 
@@ -151,6 +158,7 @@ public class CollapsingActivity extends AppCompatActivity implements ChangeNetwo
     }
 
     private void setupViewPager(ViewPager viewPager) {
+        Log.d("TEST", "CollapsingActivity.setupViewPager");
         menu1Fragment1 = MenuFragment1.newInstance(dummyDataFromServer);
         menu1Fragment2 = MenuFragment2.newInstance();
 
@@ -162,6 +170,7 @@ public class CollapsingActivity extends AppCompatActivity implements ChangeNetwo
 
     @Override
     protected void onDestroy() {
+        Log.d("TEST", "CollapsingActivity.onDestroy");
         super.onDestroy();
         unregisterReceiver(networkStateReceiver);
     }
@@ -169,6 +178,7 @@ public class CollapsingActivity extends AppCompatActivity implements ChangeNetwo
     @Override
     public void networkStateIsChanged(boolean isConnected) {
         this.isConnected = isConnected;
+        Log.d("TEST", "CollapsingActivity.networkStateIsChanged.isConnected: " + isConnected);
         if (isConnected) {
             Toast.makeText(CollapsingActivity.this, "Connection received.", Toast.LENGTH_SHORT).show();
             if (!dataLoading) {
@@ -180,6 +190,7 @@ public class CollapsingActivity extends AppCompatActivity implements ChangeNetwo
     }
 
     protected void showFragmentWithoutBackStack(int containerViewId, Fragment fragment) {
+        Log.d("TEST", "CollapsingActivity.showFragmentWithoutBackStack");
         previousFragment = currentFragment;
         currentFragment = fragment;
         String fragmentTag = fragment.getClass().getSimpleName();
@@ -190,5 +201,29 @@ public class CollapsingActivity extends AppCompatActivity implements ChangeNetwo
         }
         fragmentTransaction.add(containerViewId, fragment, fragmentTag)
                 .commitNowAllowingStateLoss();
+    }
+
+    @Override
+    protected void onStop() {
+        Log.d("TEST", "CollapsingActivity.onStop");
+        super.onStop();
+    }
+
+    @Override
+    protected void onPause() {
+        Log.d("TEST", "CollapsingActivity.onPause");
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        Log.d("TEST", "CollapsingActivity.onResume");
+        super.onResume();
+    }
+
+    @Override
+    protected void onRestart() {
+        Log.d("TEST", "CollapsingActivity.onRestart");
+        super.onRestart();
     }
 }
