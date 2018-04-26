@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/shop_final_root_layout"
+    android:id="@+id/root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -81,7 +81,7 @@
             android:layout_height="48dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            android:background="@color/yellow"
+            android:background="#45b0b2"
             android:visibility="gone"
             app:tabBackground="@drawable/backgr_blue_transparent_selector"
             app:tabGravity="center"
@@ -101,7 +101,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/blue"
-        android:visibility="visible"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <android.support.v4.view.ViewPager

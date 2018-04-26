@@ -13,21 +13,24 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class CollapsingActivity extends AppCompatActivity implements ChangeNetworkNotification {
+    private static int dataReloadIteration = 0;
+    private SomeCustomData dummyDataFromServer;
 
-    @BindView(R.id.shop_final_root_layout)
-    CoordinatorLayout shop_final_root_layout;
+    @BindView(R.id.root_layout)
+    CoordinatorLayout root_layout;
 
     @BindView(R.id.app_bar_layout)
-    AppBarLayout shop_final_app_bar_layout;
+    AppBarLayout app_bar_layout;
 
     @BindView(R.id.collapsing_toolbar_layout)
-    CollapsingToolbarLayout shop_final_collapsing_toolbar_layout;
+    CollapsingToolbarLayout collapsing_toolbar_layout;
 
     @BindView(R.id.view_pager_layout)
     ViewPager viewPager;
@@ -35,19 +38,22 @@ public class CollapsingActivity extends AppCompatActivity implements ChangeNetwo
     @BindView(R.id.tab_layout)
     TabLayout tabLayout;
 
+    @BindView(R.id.collapsing_data_1_txt)
+    TextView collapsing_data_1_txt;
+
     private NetworkStateReceiver networkStateReceiver;
     private boolean isConnected;
 
     protected Fragment currentFragment;
     protected Fragment previousFragment;
     protected FragmentManager fragmentManager;
+
     private boolean dataLoading = false;
+    private boolean isCreated = false;
 
     private MenuFragment1 menu1Fragment1;
     private MenuFragment2 menu1Fragment2;
     private TabMenuAdapter adapter;
-
-    private boolean isCreated = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +92,7 @@ public class CollapsingActivity extends AppCompatActivity implements ChangeNetwo
             @Override
             public void run() {
                 try {
-                    Thread.sleep(2000);
+                    Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -96,6 +102,11 @@ public class CollapsingActivity extends AppCompatActivity implements ChangeNetwo
                     public void run() {
                         Toast.makeText(CollapsingActivity.this, "Data loaded.", Toast.LENGTH_SHORT).show();
 
+                        dataReloadIteration++;
+                        dummyDataFromServer = getDummyObjectFromServer();
+
+                        collapsing_data_1_txt.setText(dummyDataFromServer.Name); //Set data from server in collapsing part of Activity
+
                         boolean showOneView = false;
                         if (showOneView) {
                             initSingleView();
@@ -103,7 +114,7 @@ public class CollapsingActivity extends AppCompatActivity implements ChangeNetwo
                             if (!isCreated) {
                                 initTabView();
                             } else {
-                                menu1Fragment1.data = "new Data setted after reconnect";
+                                menu1Fragment1.setupData(dummyDataFromServer);  //Set the data from server to fragment, not reloading it, just updating data
                             }
                         }
                         dataLoading = false;
@@ -112,6 +123,13 @@ public class CollapsingActivity extends AppCompatActivity implements ChangeNetwo
             }
         });
         t.start();
+    }
+
+    private SomeCustomData getDummyObjectFromServer() {
+        SomeCustomData dto = new SomeCustomData();
+        dto.Age = dataReloadIteration;
+        dto.Name = "Name " + dataReloadIteration;
+        return dto;
     }
 
     private void initSingleView() {
@@ -132,8 +150,8 @@ public class CollapsingActivity extends AppCompatActivity implements ChangeNetwo
     }
 
     private void setupViewPager(ViewPager viewPager) {
-        menu1Fragment1 = new MenuFragment1();
-        menu1Fragment2 = new MenuFragment2();
+        menu1Fragment1 = MenuFragment1.newInstance(dummyDataFromServer);
+        menu1Fragment2 = MenuFragment2.newInstance();
 
         adapter = new TabMenuAdapter(getSupportFragmentManager());
         adapter.addFragment(menu1Fragment1, "Menu 1");
@@ -167,9 +185,9 @@ public class CollapsingActivity extends AppCompatActivity implements ChangeNetwo
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
         if (previousFragment != null) {
-            fragmentTransaction.hide(previousFragment);
+            fragmentTransaction.remove(previousFragment);
         }
         fragmentTransaction.add(containerViewId, fragment, fragmentTag)
-                .commitAllowingStateLoss();
+                .commitNowAllowingStateLoss();
     }
 }

@@ -6,6 +6,15 @@
     android:orientation="vertical"
     android:visibility="visible">
 
+    <TextView
+        android:id="@+id/collapsing_data_1_txt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/yellow"
+        android:text=""
+        android:textColor="@color/blue"
+        android:textSize="20sp" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="400dp"
