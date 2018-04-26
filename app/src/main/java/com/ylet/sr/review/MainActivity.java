@@ -16,13 +16,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
-
-    @BindView(R.id.btn1)
-    Button btn1;
-
-    @BindView(R.id.btn2)
-    Button btn2;
-
     @BindView(R.id.btn3)
     Button btn3;
 
@@ -49,146 +42,14 @@ public class MainActivity extends AppCompatActivity {
 
         expandableLayout.setVisibility(View.GONE);
 
-        btn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(true);
-            }
-        });
-
-        btn2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(false);
-            }
-        });
-
         btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startCollapsingActivity();
             }
         });
-
-        expandReviewLayoutBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (expandableLayout.getVisibility() == View.GONE) {
-                    expand();
-                }
-            }
-        });
-
-        closeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (expandableLayout.getVisibility() == View.VISIBLE) {
-                    collapse();
-                }
-            }
-        });
-
-        sendReviewBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (expandableLayout.getVisibility() == View.VISIBLE) {
-                    collapse();
-                }
-            }
-        });
-
     }
 
-    private void collapse() {
-        int finalHeight = expandableLayout.getHeight();
-
-        expandableLayout.setVisibility(View.VISIBLE);
-        ValueAnimator animator = slideAnimator(finalHeight, 0, expandableLayout);
-
-        animator.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                expandableLayout.setVisibility(View.GONE);
-                expandReviewLayoutBtn.setVisibility(View.VISIBLE);
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animation) {
-
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animation) {
-
-            }
-        });
-
-        animator.start();
-    }
-
-    private void expand() {
-        expandReviewLayoutBtn.setVisibility(View.INVISIBLE);
-        expandableLayout.setVisibility(View.VISIBLE);
-
-        final int widthSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
-        final int heightSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
-        expandableLayout.measure(widthSpec, heightSpec);
-
-        ValueAnimator animator = slideAnimator(0, expandableLayout.getMeasuredHeight(), expandableLayout);
-
-        animator.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                expandableLayout.setVisibility(View.VISIBLE);
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animation) {
-
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animation) {
-
-            }
-        });
-
-        animator.start();
-
-    }
-
-    private ValueAnimator slideAnimator(int start, int end, final View animationView) {
-        ValueAnimator animator = ValueAnimator.ofInt(start, end);
-
-        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                //Update Height
-                int value = (Integer) valueAnimator.getAnimatedValue();
-                ViewGroup.LayoutParams layoutParams = animationView.getLayoutParams();
-                layoutParams.height = value;
-                animationView.setLayoutParams(layoutParams);
-            }
-        });
-        return animator;
-    }
-
-    private void startActivity(boolean showOneView) {
-        Intent shopFinalIntent = new Intent(this, ReviewActivity.class);
-        shopFinalIntent.putExtra("showOneView", showOneView);
-        startActivity(shopFinalIntent);
-
-    }
 
     private void startCollapsingActivity() {
         Intent shopFinalIntent = new Intent(this, CollapsingActivity.class);

@@ -18,9 +18,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ReviewActivity"
-            android:theme="@style/AppTheme.ContentBelowStatusBarTheme" />
 
         <activity
             android:name=".CollapsingActivity"

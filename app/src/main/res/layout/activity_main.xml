@@ -9,20 +9,6 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/btn1"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_marginBottom="1dp"
-        android:text="Start Single View" />
-
-    <Button
-        android:id="@+id/btn2"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_marginBottom="1dp"
-        android:text="Start Tab View" />
-
-    <Button
         android:id="@+id/btn3"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
